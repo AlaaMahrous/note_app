@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/views/edit_note_view.dart';
 
 class NoteCard extends StatelessWidget {
   const NoteCard({super.key});
@@ -6,7 +7,9 @@ class NoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, EditNoteView.id);
+      },
       child: Container(
         margin: EdgeInsets.only(bottom: 20),
         decoration: BoxDecoration(
