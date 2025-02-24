@@ -12,9 +12,9 @@ class EditNoteViewBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            CustomTextFeild(hint: 'Title'),
+            CustomTextFeild(hint: 'Title', onSaved: (value) {}),
             SizedBox(height: 19),
-            CustomTextFeild(hint: 'Content', maxLines: 5),
+            CustomTextFeild(hint: 'Content', maxLines: 5, onSaved: (value) {}),
             SizedBox(height: 20),
             CustomButton(text: 'Edit', onTap: () {}),
           ],
