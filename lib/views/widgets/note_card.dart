@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/models/note_model.dart';
 import 'package:note_app/views/edit_note_view.dart';
 
 class NoteCard extends StatelessWidget {
-  const NoteCard({super.key});
-
+  const NoteCard({super.key, required this.note});
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -31,7 +32,7 @@ class NoteCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Flutter tips',
+                    note.noteTitle,
                     style: TextStyle(fontSize: 27, color: Colors.black),
                   ),
                   InkWell(
@@ -43,7 +44,7 @@ class NoteCard extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Build your career with Alaa Mahrous make your life different',
+                  note.noteText,
                   style: TextStyle(
                     fontSize: 18,
                     color: const Color.fromARGB(144, 0, 0, 0),
@@ -53,7 +54,7 @@ class NoteCard extends StatelessWidget {
               Align(
                 alignment: Alignment.bottomRight,
                 child: Text(
-                  'May 21,2025',
+                  note.date,
                   style: TextStyle(
                     fontSize: 15,
                     color: const Color.fromARGB(172, 0, 0, 0),

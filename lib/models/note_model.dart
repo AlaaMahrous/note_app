@@ -9,8 +9,11 @@ class NoteModel extends HiveObject {
   @HiveField(1)
   String noteText;
   @HiveField(2)
-  DateTime date;
+  String date;
 
-  NoteModel({required this.noteTitle, required this.noteText})
-    : date = DateTime.now();
+  NoteModel({
+    required this.noteTitle,
+    required this.noteText,
+    required this.date,
+  });
 }

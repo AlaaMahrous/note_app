@@ -18,7 +18,6 @@ class AddNoteForm extends StatefulWidget {
 class _AddNoteFormState extends State<AddNoteForm> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  NoteModel? note;
   String? title, noteText;
   @override
   Widget build(BuildContext context) {
@@ -57,9 +56,13 @@ class _AddNoteFormState extends State<AddNoteForm> {
   void addNoteMethod() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      note = NoteModel(noteTitle: title!, noteText: noteText!);
+      NoteModel note = NoteModel(
+        noteTitle: title!,
+        noteText: noteText!,
+        date: DateTime.now().toString(),
+      );
       try {
-        BlocProvider.of<AddNoteCubit>(context).addNote(note!);
+        BlocProvider.of<AddNoteCubit>(context).addNote(note);
         //showMessage((context), 'Adding note process succed', Colors.blue);
       } on Exception catch (e) {
         //showMessage((context), 'Adding note process faild: $e', Colors.red);
