@@ -24,31 +24,44 @@ class _AddNoteFormState extends State<AddNoteForm> {
     return Form(
       key: _formKey,
       autovalidateMode: autovalidateMode,
-      child: Column(
-        children: [
-          CustomTextFeild(
-            hint: 'Title',
-            onSaved: (value) {
-              title = value;
-            },
-          ),
-          SizedBox(height: 19),
-          CustomTextFeild(
-            hint: 'Content',
-            maxLines: 5,
-            onSaved: (value) {
-              noteText = value;
-            },
-          ),
-          SizedBox(height: 20),
-          CustomButton(
-            text: 'Add',
-            onTap: () {
-              addNoteMethod();
-            },
-          ),
-          SizedBox(height: 20),
-        ],
+      child: Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+          left: 20,
+          right: 20,
+          top: 30,
+        ),
+        child: Column(
+          children: [
+            CustomTextFeild(
+              hint: 'Title',
+              onSaved: (value) {
+                title = value;
+              },
+            ),
+            SizedBox(height: 19),
+            CustomTextFeild(
+              hint: 'Content',
+              maxLines: 5,
+              onSaved: (value) {
+                noteText = value;
+              },
+            ),
+            SizedBox(height: 20),
+            BlocBuilder<AddNoteCubit, AddNoteState>(
+              builder: (context, state) {
+                return CustomButton(
+                  isLoading: state is AddNoteLoading,
+                  text: 'Add',
+                  onTap: () {
+                    addNoteMethod();
+                  },
+                );
+              },
+            ),
+            SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
@@ -63,7 +76,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
       );
       try {
         BlocProvider.of<AddNoteCubit>(context).addNote(note);
-        //showMessage((context), 'Adding note process succed', Colors.blue);
+        showMessage((context), 'Adding note process succed', Colors.blue);
       } on Exception catch (e) {
         //showMessage((context), 'Adding note process faild: $e', Colors.red);
       }
