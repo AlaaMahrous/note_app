@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:note_app/cubits/cubit_add_note/add_note_cubit.dart';
 import 'package:note_app/cubits/cubit_display_notes/display_notes_cubit.dart';
 import 'package:note_app/views/edit_note_view.dart';
 import 'package:note_app/views/notes_view.dart';
@@ -10,11 +9,8 @@ class NoteApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => DisplayNotesCubit()),
-        BlocProvider(create: (context) => AddNoteCubit()),
-      ],
+    return BlocProvider(
+      create: (context) => DisplayNotesCubit(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark(),

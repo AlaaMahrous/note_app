@@ -7,6 +7,7 @@ import 'package:note_app/helper/show_snack_bar.dart';
 import 'package:note_app/models/note_model.dart';
 import 'package:note_app/views/widgets/custom_sheet_button.dart';
 import 'package:note_app/views/widgets/custom_text_feild.dart';
+import 'package:intl/intl.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({super.key});
@@ -72,7 +73,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
       NoteModel note = NoteModel(
         noteTitle: title!,
         noteText: noteText!,
-        date: DateTime.now().toString(),
+        date: DateFormat('dd/MM/yyyy').format(DateTime.now()),
       );
       try {
         BlocProvider.of<AddNoteCubit>(context).addNote(note);

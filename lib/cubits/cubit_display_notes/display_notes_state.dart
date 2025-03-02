@@ -5,8 +5,6 @@ sealed class DisplayNotesState {}
 
 final class DisplayNotesInitial extends DisplayNotesState {}
 
-final class DisplayNotesLoading extends DisplayNotesState {}
-
 final class DisplayNotesSuccess extends DisplayNotesState {
   final List<NoteModel> notesList;
 

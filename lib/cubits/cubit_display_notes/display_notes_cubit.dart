@@ -11,7 +11,6 @@ class DisplayNotesCubit extends Cubit<DisplayNotesState> {
   late List<NoteModel> notesList;
   DisplayNotesCubit() : super(DisplayNotesInitial());
   displayNotes() {
-    emit(DisplayNotesLoading());
     try {
       noteBox = Hive.box<NoteModel>(HiveBoxes.notesBox);
       notesList = noteBox.values.toList();
